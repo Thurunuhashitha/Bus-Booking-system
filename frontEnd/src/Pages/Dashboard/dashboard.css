@@ -428,23 +428,43 @@ body::before {
 /* Seat Layout */
 .seat-layout {
   display: grid;
-  grid-template-columns: 1fr 60px 1fr;
+  grid-template-columns: auto 60px auto;
   gap: 1.5rem;
   max-width: 700px;
+  min-width: 500px;
   margin: 0 auto;
 }
 
-.seat-column {
+/* Left Column - 2x2 */
+.seat-column.left-column {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.75rem;
+  width: 160px;
+  align-content: start; /* Added to prevent stretching */
+}
+
+/* Right Column - 3x3 */
+.seat-column.right-column {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  width: 240px; /* Same width as right column */
+  align-content: start; /* Added to prevent stretching */
+}
+
+/* Single seat alignment (for seat 54) */
+.seat-column.right-column .seat:last-child:nth-last-child(1) {
+  grid-column: 1; /* Force single seat to first column */
 }
 
 .aisle {
   display: flex;
-  align-items: center;
+  align-items: flex-start; /* Changed from center to start */
+  padding-top: 0; /* Added padding */
   justify-content: center;
   position: relative;
+  width: 60px;
 }
 
 .aisle-text {
@@ -455,6 +475,64 @@ body::before {
   letter-spacing: 4px;
   color: var(--text-secondary);
   opacity: 0.5;
+  position: sticky; /* Make it sticky */
+  top: 0;
+}
+
+/* Seat Layout Wrapper */
+.seat-layout-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.seat-layout {
+  display: grid;
+  grid-template-columns: auto 60px auto;
+  gap: 1.5rem;
+  max-width: 700px;
+  min-width: 500px;
+  margin: 0 auto;
+}
+
+/* Left Column - 2x2 */
+.seat-column.left-column {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  width: 160px;
+  align-content: start;
+}
+
+/* Right Column - 3x3 */
+.seat-column.right-column {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  width: 240px;
+  align-content: start;
+}
+
+.aisle {
+  display: flex;
+  align-items: flex-start;
+  padding-top: 0;
+  justify-content: center;
+  position: relative;
+  width: 60px;
+}
+
+.aisle-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 4px;
+  color: var(--text-secondary);
+  opacity: 0.5;
+  position: sticky;
+  top: 0;
 }
 
 /* Individual Seat */
@@ -473,6 +551,7 @@ body::before {
   background: rgba(255, 255, 255, 0.02);
   padding: 0.5rem;
   min-height: 60px;
+  width: 100%;
 }
 
 .seat::before {
@@ -509,6 +588,34 @@ body::before {
   font-weight: 700;
   position: relative;
   z-index: 1;
+}
+
+/* Last row - full width 6 seats */
+.last-row-full {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.75rem;
+  margin-top: -5rem;
+  max-width: 500px;
+  width: 100%;
+}
+
+.last-row-full .seat {
+  width: 100%;
+  aspect-ratio: 1;
+}
+
+/* Prevent responsive changes */
+@media (max-width: 768px) {
+  .seat-layout {
+    min-width: 460px;
+    overflow-x: auto;
+  }
+  
+  .last-row-full {
+    min-width: 460px;
+    overflow-x: auto;
+  }
 }
 
 /* Seat States */
