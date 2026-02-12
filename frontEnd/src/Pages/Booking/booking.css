@@ -334,3 +334,189 @@ body::before {
 .booking-card h3 {
   animation: successPulse 2s ease-in-out infinite;
 }
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .booking-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .booking-title {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+  }
+
+  .booking-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .booking-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .booking-card p {
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .input-field {
+    padding: 0.9rem 1.2rem;
+    font-size: 0.95rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .confirm-btn,
+  .back-btn {
+    font-size: 1rem;
+    padding: 1rem 2rem;
+  }
+
+  .qr-section {
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .qr-section canvas {
+    max-width: 180px;
+    height: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .booking-container {
+    padding: 1rem 0.75rem;
+    min-height: 100vh;
+    justify-content: flex-start;
+    padding-top: 2rem;
+  }
+
+  .booking-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+
+  .booking-card {
+    padding: 1.5rem 1rem;
+    border-radius: 16px;
+  }
+
+  .booking-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .booking-card p {
+    font-size: 0.95rem;
+    margin-bottom: 0.7rem;
+  }
+
+  .input-field {
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+  }
+
+  .confirm-btn,
+  .back-btn {
+    font-size: 0.95rem;
+    padding: 0.9rem 1.8rem;
+    margin-top: 0.75rem;
+  }
+
+  .qr-section {
+    padding: 1.25rem;
+    margin: 1.25rem 0;
+  }
+
+  .qr-section canvas {
+    max-width: 160px;
+    padding: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .booking-container {
+    padding: 0.75rem 0.5rem;
+    padding-top: 1.5rem;
+  }
+
+  .booking-title {
+    font-size: 1.3rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .booking-card {
+    padding: 1.25rem 0.85rem;
+  }
+
+  .booking-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .booking-card p {
+    font-size: 0.9rem;
+    margin-bottom: 0.6rem;
+    line-height: 1.5;
+  }
+
+  .input-field {
+    padding: 0.75rem 0.9rem;
+    font-size: 0.85rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .confirm-btn,
+  .back-btn {
+    font-size: 0.9rem;
+    padding: 0.85rem 1.5rem;
+    letter-spacing: 0.5px;
+  }
+
+  .qr-section {
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+
+  .qr-section canvas {
+    max-width: 140px;
+    padding: 0.6rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .booking-title {
+    font-size: 1.1rem;
+  }
+
+  .booking-card {
+    padding: 1rem 0.75rem;
+  }
+
+  .booking-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .booking-card p {
+    font-size: 0.85rem;
+  }
+
+  .input-field {
+    padding: 0.7rem 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  .confirm-btn,
+  .back-btn {
+    font-size: 0.85rem;
+    padding: 0.8rem 1.3rem;
+  }
+
+  .qr-section canvas {
+    max-width: 120px;
+  }
+}

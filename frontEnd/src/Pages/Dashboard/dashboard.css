@@ -104,7 +104,7 @@ body::before {
 }
 
 .brand-icon {
-  width: 50px;
+  width: 70px;
   height: 50px;
   border-radius: 12px;
   border: 2px solid var(--accent-cyan);
@@ -783,4 +783,323 @@ body::before {
 button:focus {
   outline: 2px solid var(--accent-cyan);
   outline-offset: 4px;
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+  .navbar-content {
+    padding: 1rem;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .brand-title {
+    font-size: 1.2rem;
+  }
+
+  .brand-icon {
+    width: 50px;
+    height: 30px;
+  }
+
+  .admin-badge {
+    padding: 0.4rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .main-content {
+    margin-top: 140px;
+    padding: 1rem;
+  }
+
+  .trip-info {
+    padding: 1.5rem;
+  }
+
+  .trip-info-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-number {
+    font-size: 2.5rem;
+  }
+
+  .stat-icon-large {
+    font-size: 3rem;
+  }
+
+  .seat-section {
+    padding: 2rem 1rem;
+  }
+
+  .seat-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .seat-title {
+    font-size: 1.5rem;
+  }
+
+  .seat-legend {
+    gap: 1rem;
+  }
+
+  .driver-box {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+  }
+
+  /* Make seat layout scrollable on mobile */
+  .seat-layout-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+  }
+
+  .seat-layout {
+    min-width: 500px;
+  }
+
+  .last-row-full {
+    min-width: 500px;
+  }
+
+  .seat {
+    min-height: 50px;
+  }
+
+  .seat-icon {
+    font-size: 1.2rem;
+  }
+
+  .seat-number {
+    font-size: 0.7rem;
+  }
+
+  .book-button {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .navbar-brand {
+    gap: 0.5rem;
+  }
+
+  .brand-title {
+    font-size: 1rem;
+  }
+
+  .brand-icon {
+    width: 45px;
+    height: 25px;
+  }
+
+  .main-content {
+    margin-top: 160px;
+    padding: 0.75rem;
+  }
+
+  .trip-info {
+    padding: 1rem;
+    border-radius: 16px;
+  }
+
+  .trip-detail {
+    padding: 0.75rem;
+    gap: 0.75rem;
+  }
+
+  .trip-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+
+  .trip-label {
+    font-size: 0.7rem;
+  }
+
+  .trip-value {
+    font-size: 1rem;
+  }
+
+  .stat-card {
+    padding: 1.5rem;
+  }
+
+  .stat-number {
+    font-size: 2rem;
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
+  }
+
+  .stat-icon-large {
+    font-size: 2.5rem;
+  }
+
+  .seat-section {
+    padding: 1.5rem 0.75rem;
+    border-radius: 16px;
+  }
+
+  .seat-title {
+    font-size: 1.2rem;
+  }
+
+  .seat-legend {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .legend-item {
+    font-size: 0.8rem;
+  }
+
+  .legend-box {
+    width: 24px;
+    height: 24px;
+  }
+
+  .driver-section {
+    margin-bottom: 2rem;
+  }
+
+  .driver-box {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  .seat-layout {
+    gap: 1rem;
+    min-width: 460px;
+  }
+
+  .seat-column.left-column {
+    width: 140px;
+    gap: 0.5rem;
+  }
+
+  .seat-column.right-column {
+    width: 210px;
+    gap: 0.5rem;
+  }
+
+  .aisle {
+    width: 50px;
+  }
+
+  .aisle-text {
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+  }
+
+  .seat {
+    min-height: 45px;
+    padding: 0.4rem;
+    border-radius: 8px;
+  }
+
+  .seat-icon {
+    font-size: 1rem;
+    margin-bottom: 0.15rem;
+  }
+
+  .seat-number {
+    font-size: 0.65rem;
+  }
+
+  .last-row-full {
+    gap: 0.5rem;
+    min-width: 460px;
+  }
+
+  .booking-section {
+    margin-top: 2rem;
+  }
+
+  .book-button {
+    padding: 0.9rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-content {
+    padding: 0.75rem;
+  }
+
+  .brand-title {
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+  }
+
+  .brand-icon {
+    width: 30px;
+    height: 20px;
+  }
+
+  .admin-badge {
+    padding: 0.3rem 0.75rem;
+    font-size: 0.7rem;
+  }
+
+  .main-content {
+    margin-top: 140px;
+    padding: 0.5rem;
+  }
+
+  .trip-info {
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .trip-detail {
+    padding: 0.5rem;
+  }
+
+  .trip-icon {
+    width: 35px;
+    height: 35px;
+    font-size: 18px;
+  }
+
+  .trip-value {
+    font-size: 0.95rem;
+  }
+
+  .stat-card {
+    padding: 1.25rem;
+  }
+
+  .stat-number {
+    font-size: 1.8rem;
+  }
+
+  .seat-section {
+    padding: 1rem 0.5rem;
+  }
+
+  .seat-title {
+    font-size: 1.1rem;
+  }
+
+  .seat-header {
+    margin-bottom: 2rem;
+  }
+
+  .driver-box {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+  }
 }
