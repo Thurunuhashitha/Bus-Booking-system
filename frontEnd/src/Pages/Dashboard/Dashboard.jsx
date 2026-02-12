@@ -154,8 +154,8 @@ const Dashboard = () => {
           </div>
 
           {/* Driver Section */}
-          <div className="driver-section">
-            <div className="driver-box">🚗 DRIVER</div>
+          <div className="driver-section"> 
+            <input className="driver-box" type="date" />
           </div>
 
           {/* Seat Layout */}
@@ -398,7 +398,7 @@ const Dashboard = () => {
         <div className="seat-icon">💺</div>
         <div className="seat-number">47</div>
       </div>
-      <div className={`seat ${seats[46].status}`} onClick={() => handleSeatClick(seats[46])}>
+      <div className={`seat ${seats[47].status}`} onClick={() => handleSeatClick(seats[46])}>
         <div className="seat-icon">💺</div>
         <div className="seat-number">48</div>
       </div>
