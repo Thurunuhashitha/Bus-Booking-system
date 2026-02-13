@@ -71,7 +71,7 @@ const Dashboard = () => {
       <nav className="navbar">
         <div className="navbar-content">
           <div className="navbar-brand">
-            <img src="/src/assets/logo.png" alt="Bus Icon" className="brand-icon" />
+            <img src="/logo.png" alt="Bus Icon" className="brand-icon" />
             <div>
               <div className="brand-title">KGS Bus Booking</div>
               <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', fontWeight: 500 }}>
