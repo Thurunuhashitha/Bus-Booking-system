@@ -38,6 +38,8 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const [travelDate, setTravelDate] = useState("");
 
+  // Add state for route selection
+  const [route, setRoute] = useState("ampara-trinco"); // default route
 
   // Function to book selected seats
   const handleBookSeats = () => {
@@ -51,13 +53,12 @@ const Dashboard = () => {
 
     navigate("/booking", {
       state: {
-        seats: selectedSeats,
-        from: "Ampara",
-        to: "Thrincomalee",
+        seats: selectedSeats, 
         departure: "07:30 AM",
         busType: "Normal",
         pricePerSeat: 1500,
-        date: travelDate   // ✅ pass selected date
+        date: travelDate ,  // ✅ pass selected date
+        routes :route
       }
     });
   };
@@ -109,7 +110,39 @@ const Dashboard = () => {
               <div className="trip-icon">🕐</div>
               <div>
                 <div className="trip-label">Departure</div>
-                <div className="trip-value">07:30 AM</div>
+                <div className="trip-value">07:30 AM - 01.15 PM</div>
+              </div>
+            </div>
+            <div className="trip-detail">
+              <div className="trip-icon">🚌</div>
+              <div>
+                <div className="trip-label">Bus Type</div>
+                <div className="trip-value">Normal</div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className="trip-info">
+          <div className="trip-info-grid">
+            <div className="trip-detail">
+              <div className="trip-icon">📍</div>
+              <div>
+                <div className="trip-label">From</div>
+                <div className="trip-value">Thrincomalee</div>
+              </div>
+            </div>
+            <div className="trip-detail">
+              <div className="trip-icon">🎯</div>
+              <div>
+                <div className="trip-label">To</div>
+                <div className="trip-value">Ampara</div>
+              </div>
+            </div>
+            <div className="trip-detail">
+              <div className="trip-icon">🕐</div>
+              <div>
+                <div className="trip-label">Departure</div>
+                <div className="trip-value">05:15 PM - 10.30 PM</div>
               </div>
             </div>
             <div className="trip-detail">
@@ -173,15 +206,50 @@ const Dashboard = () => {
             </div>
           </div>
 
-          {/* Driver Section */}
-          <div className="driver-section">
+          {/* Rout and Date Section */} 
+          <div className="route-selection-section">
+            <h3 className="route-title">Select Route</h3>
+            <div className="route-options">
+              <label className="route-option">
+                <input
+                  type="radio"
+                  name="route"
+                  value="ampara-trinco"
+                  checked={route === "ampara-trinco"}
+                  onChange={(e) => setRoute(e.target.value)}
+                />
+                <span className="route-label">
+                  <span className="route-from">Ampara</span>
+                  <span className="route-arrow">→</span>
+                  <span className="route-to">Trincomalee</span>
+                </span>
+              </label>
+
+              <label className="route-option">
+                <input
+                  type="radio"
+                  name="route"
+                  value="trinco-ampara"
+                  checked={route === "trinco-ampara"}
+                  onChange={(e) => setRoute(e.target.value)}
+                />
+                <span className="route-label">
+                  <span className="route-from">Trincomalee</span>
+                  <span className="route-arrow">→</span>
+                  <span className="route-to">Ampara</span>
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <div className="date-section">
+            <h3 className="date-title">Select Date</h3>
             <input
-              className="driver-box"
+              className="date-box"
               type="date"
               value={travelDate}
               onChange={(e) => setTravelDate(e.target.value)}
             />
-
           </div>
 
           {/* Seat Layout */}
