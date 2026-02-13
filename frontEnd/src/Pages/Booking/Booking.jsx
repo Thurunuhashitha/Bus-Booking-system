@@ -51,7 +51,7 @@ const Booking = () => {
             {!confirmed ? (
                 <div className="booking-card">
 
-                    <p><strong>Route:</strong> {data.from} → {data.to}</p>
+                    <p><strong>Route:</strong> {data.routes}</p>
                     <p><strong>Departure:</strong> {data.departure}</p>
                     <p><strong>Seats:</strong> {data.seats.join(", ")}</p>
                     <p><strong>Total:</strong> LKR {total}</p>

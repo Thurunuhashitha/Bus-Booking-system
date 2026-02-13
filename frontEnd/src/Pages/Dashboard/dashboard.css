@@ -224,7 +224,7 @@ body::before {
 }
 
 .trip-value {
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--text-primary);
 }
@@ -395,35 +395,165 @@ body::before {
   box-shadow: 0 0 10px var(--booked-glow);
 }
 
-/* Driver Section */
-.driver-section {
-  text-align: center;
-  margin-bottom: 3rem;
+/* Route Selection Section */
+.route-selection-section {
+  margin-bottom: 2rem;
 }
 
-.driver-box {
-  display: inline-block;
-  padding: 1rem 3rem;
-  background: linear-gradient(135deg, rgba(0, 212, 255, 0.2) 0%, rgba(180, 0, 255, 0.2) 100%);
-  border: 2px solid var(--accent-cyan);
-  border-radius: 16px;
+.route-title,
+.date-title {
   font-family: 'Orbitron', sans-serif;
   font-size: 1.2rem;
-  font-weight: 700;
-  box-shadow: 0 4px 20px var(--shadow-color);
-  animation: driverPulse 2s ease-in-out infinite;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
 }
 
-@keyframes driverPulse {
-  0%, 100% { 
-    box-shadow: 0 4px 20px var(--shadow-color);
-    transform: scale(1);
+.route-options {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.route-option {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.2rem 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid var(--glass-border);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+  min-width: 250px;
+}
+
+.route-option:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.route-option input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--accent-cyan);
+  cursor: pointer;
+}
+
+.route-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.route-from,
+.route-to {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.route-arrow {
+  color: var(--accent-cyan);
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+/* When selected */
+.route-option:has(input:checked) {
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.15) 0%, rgba(180, 0, 255, 0.15) 100%);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 25px rgba(0, 212, 255, 0.3);
+}
+
+/* Date Section */
+/* Date Section */
+.date-section {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.date-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.date-box {
+  width: 100%;
+  max-width: 300px;
+  padding: 1rem 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid var(--glass-border);
+  border-radius: 12px;
+  color: var(--text-primary);
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.date-box:hover {
+  border-color: var(--accent-cyan);
+  background: rgba(0, 212, 255, 0.05);
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+}
+
+.date-box:focus {
+  outline: none;
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 25px rgba(0, 212, 255, 0.3);
+}
+
+/* Date picker styling */
+.date-box::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.date-box::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+/* Mobile Responsive */
+@media (max-width: 640px) {
+  .route-options {
+    flex-direction: column;
+    gap: 1rem;
   }
-  50% { 
-    box-shadow: 0 8px 30px var(--shadow-color);
-    transform: scale(1.02);
+
+  .route-option {
+    min-width: 100%;
+    padding: 1rem;
+  }
+
+  .route-label {
+    font-size: 1rem;
+  }
+
+  .route-arrow {
+    font-size: 1.1rem;
+  }
+
+  .date-box {
+    max-width: 100%;
   }
 }
+ 
+
+ 
 
 /* Seat Layout */
 .seat-layout {
@@ -851,7 +981,7 @@ button:focus {
     gap: 1rem;
   }
 
-  .driver-box {
+  .date-box {
     padding: 0.8rem 2rem;
     font-size: 1rem;
   }
@@ -971,11 +1101,11 @@ button:focus {
     height: 24px;
   }
 
-  .driver-section {
+  .date-section {
     margin-bottom: 2rem;
   }
 
-  .driver-box {
+  .date-box {
     padding: 0.7rem 1.5rem;
     font-size: 0.9rem;
   }
@@ -1098,7 +1228,7 @@ button:focus {
     margin-bottom: 2rem;
   }
 
-  .driver-box {
+  .date-box {
     padding: 0.6rem 1.2rem;
     font-size: 0.85rem;
   }
