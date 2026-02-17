@@ -619,29 +619,11 @@ body::before {
 
 .seat-layout {
   display: grid;
-  grid-template-columns: auto 60px auto;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   gap: 1.5rem;
-  max-width: 700px;
+  max-width: 70%;
   min-width: 500px;
   margin: 0 auto;
-}
-
-/* Left Column - 2x2 */
-.seat-column.left-column {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.75rem;
-  width: 160px;
-  align-content: start;
-}
-
-/* Right Column - 3x3 */
-.seat-column.right-column {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.75rem;
-  width: 240px;
-  align-content: start;
 }
 
 .aisle {
