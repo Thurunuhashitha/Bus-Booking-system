@@ -1,4 +1,4 @@
-import Dashboard from '../Pages/Dashboard/DashboardMap'
+import Dashboard from '../Pages/Dashboard/Dashboard'
 import Booking from '../Pages/Booking/Booking'
 import './App.css'
 import { Routes } from 'react-router-dom'

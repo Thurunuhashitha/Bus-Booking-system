@@ -84,6 +84,7 @@ const Booking = () => {
                     <p><strong>Booking ID:</strong> {bookingDetails.bookingId}</p>
                     <p><strong>Name:</strong> {name}</p>
                     <p><strong>Seats:</strong> {data.seats.join(", ")}</p>
+                    <p><strong>Departure:</strong> {data.departure}</p>
                     <p><strong>Total Paid:</strong> LKR {total}</p>
 
                     <div className="qr-section">
