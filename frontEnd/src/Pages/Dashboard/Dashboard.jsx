@@ -53,7 +53,7 @@ const Dashboard = () => {
     let selectedDeparture = "05:15 PM";
 
     if (route === "ampara-trinco") {
-      selectedDeparture = "07:15 AM";
+      selectedDeparture = "07:30 AM";
     }
 
     navigate("/booking", {
