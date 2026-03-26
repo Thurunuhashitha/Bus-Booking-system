@@ -37,12 +37,36 @@ const Booking = () => {
         total
     };
 
-    const handleConfirm = () => {
+    const handleConfirm = async () => {
         if (!name || !phone) {
             alert("Please enter name and phone number");
             return;
         }
-        setConfirmed(true);
+
+        try {
+            const response = await fetch('http://localhost:5000/api/bookings/confirm', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    route_name: data.routes,
+                    user_name: name,
+                    seat_number: data.seats[0], 
+                    booking_date: data.date
+                }),
+            });
+
+            if (response.ok) {
+                setConfirmed(true);
+            } else {
+                const errorData = await response.json();
+                alert(`Booking failed: ${errorData.error || 'Server error'}`);
+            }
+        } catch (error) {
+            console.error('Error confirming booking:', error);
+            alert('An error occurred while confirming your booking.');
+        }
     };
 
     // 👇 PDF download function
