@@ -3,6 +3,10 @@ import './Dashboard.css';
 import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
+
+  // ✅ today date for min date
+  const today = new Date().toISOString().split("T")[0];
+
   // Initialize 54 seats - all available at start
   const [seats, setSeats] = useState(
     Array.from({ length: 54 }, (_, i) => ({
@@ -39,7 +43,8 @@ const Dashboard = () => {
   const [travelDate, setTravelDate] = useState("");
 
   // Add state for route selection
-  const [route, setRoute] = useState("ampara-trinco"); // default route 
+  const [route, setRoute] = useState("ampara-trinco");
+
   // Function to book selected seats
   const handleBookSeats = () => {
 
@@ -49,6 +54,33 @@ const Dashboard = () => {
       alert("Please select travel date");
       return;
     }
+
+    // ✅ Past date check
+    if (travelDate < today) {
+      alert("You cannot select a past date");
+      return;
+    }
+
+    // ✅ Route-specific time restriction for today
+    const now = new Date();
+    if (travelDate === today) {
+      if (route === "ampara-trinco") {
+        const cutOff = new Date();
+        cutOff.setHours(7, 0, 0, 0); // 7:00 AM today
+        if (now > cutOff) {
+          alert("You cannot book Ampara → Trincomalee after 7:00 AM today.");
+          return;
+        }
+      } else if (route === "trinco-ampara") {
+        const cutOff = new Date();
+        cutOff.setHours(17, 0, 0, 0); // 5:00 PM today
+        if (now > cutOff) {
+          alert("You cannot book Trincomalee → Ampara after 5:00 PM today.");
+          return;
+        }
+      }
+    }
+
     // Decide departure based on route
     let selectedDeparture = "05:15 PM";
 
@@ -62,14 +94,11 @@ const Dashboard = () => {
         departure: selectedDeparture,
         busType: "Normal",
         pricePerSeat: 1500,
-        date: travelDate,  // ✅ pass selected date
+        date: travelDate,
         routes: route
       }
     });
   };
-
-
-
 
   return (
     <div className="dashboard-container">
@@ -94,6 +123,7 @@ const Dashboard = () => {
 
       {/* Main Content */}
       <main className="main-content">
+
         {/* Trip Information */}
         <section className="trip-info">
           <div className="trip-info-grid">
@@ -127,6 +157,7 @@ const Dashboard = () => {
             </div>
           </div>
         </section>
+
         <section className="trip-info">
           <div className="trip-info-grid">
             <div className="trip-detail">
@@ -211,7 +242,7 @@ const Dashboard = () => {
             </div>
           </div>
 
-          {/* Rout and Date Section */}
+          {/* Route and Date Section */}
           <div className="route-selection-section">
             <h3 className="route-title">Select Route</h3>
             <div className="route-options">
@@ -253,6 +284,7 @@ const Dashboard = () => {
               className="date-box"
               type="date"
               value={travelDate}
+              min={today}  // ✅ only change
               onChange={(e) => setTravelDate(e.target.value)}
             />
           </div>
@@ -266,30 +298,25 @@ const Dashboard = () => {
                 let row = Math.floor(index / seatsPerRow) + 1;
                 const col = (index) % (seatsPerRow) + 1;
                 let seatCol = (col > 2) ? col + 1 : col;
-                if (row == 10) {
+                if (row === 10) {
                   if (((col + 3) / 6) > 1) {
                     seatCol = (col + 3) % 6;
                     row += 1;
                   } else {
                     seatCol = col + 3
                   }
-
-
-                } else if (row == 11) {
+                } else if (row === 11) {
                   seatCol = col + 2
-                }
-                else if (col > 2) {
+                } else if (col > 2) {
                   seatCol = col + 1
                 } else {
                   seatCol = col
                 }
 
-                console.log(row, seatCol);
-
                 return (
                   <div key={index} className={`seat ${seat.status}`} onClick={() => handleSeatClick(seat)} style={{ gridColumn: seatCol, gridRow: row }}>
                     <div className="seat-icon">💺</div>
-                    <div className="seat-number" >{index + 1}</div>
+                    <div className="seat-number">{index + 1}</div>
                   </div>
                 )
               })}
