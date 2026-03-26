@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Dashboard.css';
+import './dashboard.css';
 import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
@@ -8,6 +8,7 @@ const Dashboard = () => {
   const today = new Date().toISOString().split("T")[0];
 
   // Initialize 54 seats - all available at start
+  // Initialize 35 seats - all available at start
   const [seats, setSeats] = useState(
     Array.from({ length: 54 }, (_, i) => ({
       id: i + 1,
@@ -16,6 +17,47 @@ const Dashboard = () => {
   );
 
   const [selectedSeats, setSelectedSeats] = useState([]);
+
+  const navigate = useNavigate();
+  const [travelDate, setTravelDate] = useState("");
+  const [route, setRoute] = useState("ampara-trinco");
+
+  // Fetch dashboard data from backend
+  React.useEffect(() => {
+    if (!travelDate) return;
+
+    const fetchDashboardData = async () => {
+      try {
+        const response = await fetch(`http://localhost:5000/api/bookings/dashboard?route_name=${route}&booking_date=${travelDate}`);
+        
+        if (!response.ok) {
+            console.error("Backend returned an error. Did you run the updated schema.sql?");
+            // Optionally, reset seats to available if there is an error
+            setSeats(prev => prev.map(seat => ({ ...seat, status: 'available' })));
+            return;
+        }
+
+        const data = await response.json();
+        
+        // Safety check if booked_seat_numbers exists
+        if (data.booked_seat_numbers) {
+            // Reset and update seats based on booked_seat_numbers from backend
+            setSeats(prev => prev.map((seat) => ({
+              ...seat,
+              status: data.booked_seat_numbers.includes(seat.id) ? 'booked' : 'available'
+            })));
+        } else {
+            console.error("Invalid data format received from backend");
+        }
+        
+        // Clear selection when route/date changes
+        setSelectedSeats([]);
+      } catch (error) {
+        console.error('Error fetching dashboard data:', error);
+      }
+    };
+    fetchDashboardData();
+  }, [route, travelDate]);
 
   const handleSeatClick = (seat) => {
     if (seat.status === 'booked') return;
@@ -38,12 +80,6 @@ const Dashboard = () => {
   const availableCount = seats.filter((s) => s.status === 'available').length;
   const bookedCount = seats.filter((s) => s.status === 'booked').length;
   const selectedCount = selectedSeats.length;
-
-  const navigate = useNavigate();
-  const [travelDate, setTravelDate] = useState("");
-
-  // Add state for route selection
-  const [route, setRoute] = useState("ampara-trinco");
 
   // Function to book selected seats
   const handleBookSeats = () => {
