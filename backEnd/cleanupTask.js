@@ -1,23 +1,20 @@
 const cron = require('node-cron');
 const db = require('./db/dbConnection');
 
-// Schedule a task to run every day at midnight (00:00)
-// To clear old bookings where booking_date < current_date
 const cleanupOldBookings = () => {
+    // Run every day at 12:00 AM
     cron.schedule('0 0 * * *', async () => {
-        console.log('Running scheduled cleanup for old bookings...');
+        console.log('Deleting old bookings...');
+
         try {
-            const today = new Date().toISOString().split('T')[0];
-            
-            // Delete bookings that have passed
-            const [result] = await db.execute(
-                'DELETE FROM bookings WHERE booking_date < ?',
-                [today]
-            );
-            
-            console.log(`Successfully cleared ${result.affectedRows} old bookings.`);
+            const [result] = await db.execute(`
+                DELETE FROM bookings
+                WHERE booking_date < CURDATE()
+            `);
+
+            console.log(`${result.affectedRows} old bookings deleted.`);
         } catch (error) {
-            console.error('Error during scheduled cleanup:', error);
+            console.error('Cleanup error:', error);
         }
     });
 };
